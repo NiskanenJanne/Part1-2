@@ -1,0 +1,9 @@
+selain -> palvelin: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over selain:
+Kirjoitettu muistiinpano lähetetään palvelimelle JSON -muotoisena datana, johon kuuluu sisältö sekä muistiinpanon aikaleima. 
+POST kutsu ei single page app :n tapauksessa aiheuta takaisinkutsua, vaan sisältää koodin, joka saa tapahtumankäsittelijän 
+lisäämään uuden muistiinpanon muistiinpanojen listalle ja piirtämään ruudun sisällön uudestaan.
+end note:
+
+palvelin -> selain: 
