@@ -7,27 +7,42 @@ const Statistics = (props) => {
   console.log(average())
   const pos = () => props.good / all()
   console.log(pos())
-  if (props.good, props.neutral, props.bad === 0){
-    return(
-      <div>
-        No feedback given
-      </div>
-    )
+  if (props.good === 0){
+    if (props.neutral === 0){
+      if (props.bad === 0){
+        return(
+          <div>
+            No feedback given
+          </div>
+        )
+      }
+    }
   }
+
   return(
     <div>
-      <>good {props.good}<br/></>
-      <>neutral {props.neutral}<br/></>
-      <>bad {props.bad}<br/></>
-      <>all {all()}<br/></>
-      <>average {average()}<br/></>
-      <>pos {pos()}</>
+      <StatisticLine text="good" value={props.good}/>
+      <StatisticLine text="neutral" value={props.neutral}/>
+      <StatisticLine text="bad" value={props.bad}/>
+      <StatisticLine text="all" value={all()}/>
+      <StatisticLine text="average" value={average()}/>
+      <StatisticLine text="pos" value={pos()}/>
+      
     </div>
   )
 }
 
+const StatisticLine = (props) => {
+  return(
+    <>{props.text} {props.value}<br/></>
+  )
+}
 
-
+const Button = (props) => {
+  return(
+    <button onClick={props.state}>{props.text}</button>
+  )
+}
 
 const App = () => {
   const Header = "Give feedback"
@@ -36,22 +51,17 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
+  const goodPlus = () => setGood(good + 1)
+  const neutralPlus = () => setNeutral(neutral + 1)
+  const badPlus = () => setBad(bad + 1)
+
   return(
     <div>
       <h1>{Header}</h1>
-
-        <button onClick={()=> setGood(good + 1)}>
-          good
-        </button>
-        <button onClick={()=> setNeutral(neutral + 1)}>
-          neutral
-        </button>
-        <button onClick={()=> setBad(bad + 1)}>
-          bad
-        </button>
-
+        <Button state = {goodPlus} text="good" />
+        <Button state = {neutralPlus} text="neutral" />
+        <Button state = {badPlus} text="bad" />
       <h1>{statistics}</h1>
-
       <div>
         <Statistics good={good}
         neutral={neutral}
@@ -60,8 +70,5 @@ const App = () => {
     </div>
   )
 }
-
-
-
 
 export default App;
