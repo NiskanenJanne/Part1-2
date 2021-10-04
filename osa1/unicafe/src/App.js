@@ -1,12 +1,11 @@
 import React, {useState} from 'react'
 
 const Statistics = (props) => {
+
   const all = () => props.good + props.neutral + props.bad
-  console.log(all())
   const average = () => (1 * props.good + 0 * props.neutral + (-1) * props.bad) / all()
-  console.log(average())
   const pos = () => props.good / all()
-  console.log(pos())
+
   if (props.good === 0){
     if (props.neutral === 0){
       if (props.bad === 0){
